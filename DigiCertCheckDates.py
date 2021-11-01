@@ -5,12 +5,11 @@ import csv
 #DigiCert API base URL
 URL = "https://www.digicert.com/services/v2/order/certificate"
 #Open key file:
-f = open('key.txt', 'r')
+f = open('/home/admin/Documents/key.txt', 'r')
 #API connection informaion dict
 CONN_INFO = {} 
 #strip the newline char from the key
 API_KEY = f.read().rstrip('\r|\n') 
-
 headers = {
           'X-DC-DEVKEY': API_KEY,
           'Content-Type': "application/json"
