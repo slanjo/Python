@@ -23,21 +23,23 @@ char_type = [0, 1, 2]
 print(f"User input = {usr_input_list}=\npassword should be {pwd_len} characters long")
 lozinka = ' ' 
 i = 0
-k = 5
 #Loop over the total requested password length
-for i in range(0, pwd_len):
+#for i in range(0, pwd_len): !!!!!FOR LOOPS DON"T WORK THE SAME AS C!!!!  IT IS NOT POSSIBLE
+#TO ADJUST THE ITERATION VARIABLE INSIDE THE FOR LOOP IN PYTHON. 
+while i < pwd_len:
 #Pick a random character type, i.e. a letter or a num or a symbol
-    print("Entered main loop")
+
+    print("==========>>>>>Entered main loop")
     j = random.randint(0, 2)
-    print(j)
-#    k = False
+    print(f"'J' == {j}'     ''I ==== ' {i}")
+    k = False
     if sum(usr_input_list) > 0: 
         print(f"Entered main 'IF'>>>>'J'=={j}")
-        if (j == 0 and usr_input_list[0] > 0):
+        if j == 0 and usr_input_list[0] > 0:
             print("entered letters 'if'")
             lozinka = lozinka + random.choice(letters)
             usr_input_list[0] -= 1
-#            k = True
+            k = True
         if (j == 1 and usr_input_list[1] > 0):
             print(f"Entered numbers")
             lozinka += random.choice(numbers)
@@ -48,8 +50,9 @@ for i in range(0, pwd_len):
             lozinka += random.choice(symbols)
             usr_input_list[2] -= 1
             k = True 
-#    if k == False:
-#        i -= 1
+    if k == False:
+        i -= 1
+    i += 1
 
 
 print(f"Generated password: {lozinka}")
