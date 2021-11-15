@@ -1,3 +1,4 @@
+import random
 from art import logo
 def add(n1, n2):
 
@@ -23,6 +24,7 @@ operations = {
         "/": divide
         ,
         }
+
 
 def calculator():
     print(logo)
