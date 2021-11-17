@@ -90,30 +90,6 @@ Do you want to play a game of Blackjack? Type 'y' or 'n':
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ##################### Hints #####################
 
 #Hint 1: Go to this website and try out the Blackjack game: 
