@@ -2,7 +2,7 @@ import random
 from os import system
 from art import logo
 print(logo)
-
+"""Return random card from the deck"""
 def deal(current_card_list, cards, more):
 
     num_of_cards = len(cards)
@@ -80,17 +80,10 @@ while play:
             print(f"    Computer's final hand: {dealer_score}, final score {dealer_score}")
             print("You went over. You lose")   
 
-        elif dealer_score > 21: 
+        elif dealer_score > 21 or player_score > dealer_score: 
             print(f"    Your final hand: {player_cards}, final score: {player_score}")
             print(f"    Computer's final hand: {dealer_score}, final score {dealer_score}")
             print("You win!")   
-
-        elif player_score > dealer_score:
-
-            print(f"    Your final hand: {player_cards}, final score: {player_score}")
-            print(f"    Computer's final hand: {dealer_score}, final score {dealer_score}")
-            print("You win!")   
-        
 
         elif player_score < dealer_score:
 
