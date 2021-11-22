@@ -1,6 +1,7 @@
 from art import logo, vs 
 from game_data import data
 import random
+from os import system
 
 def compare(follower_count_a, follower_count_b, u_choice):
     if follower_count_a > follower_count_b:
@@ -45,6 +46,8 @@ while again:
         again = False
 
     if again == True:
+        system('clear')
+        print(logo)
         print(f"Compare A: {comparator_a['name']}, a {comparator_a['description']}, from {comparator_a['country']}. ")
         print(vs)
         print(f"Against B: {comparator_b['name']}, a {comparator_b['description']}, from {comparator_b['country']}. ")
