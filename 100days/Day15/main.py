@@ -43,8 +43,10 @@ def report_not_enough_resource(ingredient):
     print(f"Sorry there is not enough {ingredient}")
 
 
-def report():
-    print(resources)
+def report(stanje, money):
+    for i in stanje:
+        print(f"{i}: {stanje[i]}")
+    print(f"Money: ${money}")
 
 
 def check_resources(choice):
@@ -64,9 +66,12 @@ def process_coins(cost):
     nickels = 0.05 * int(input("How many nickles?: "))
     pennies = 0.01 * int(input("How many pennies?: "))
     total = quarters + dimes + nickels + pennies
-    if total >= cost:
+    if total > cost:
         print(f"Here is ${total - cost} in change.")
-        return total - cost
+        return cost
+    elif total == cost:
+        print("No change this transaction")
+        return cost
     else:
         print("Sorry that's not enough money. Money refunded.")
         return 0
@@ -84,21 +89,23 @@ def process_request(choice):
         test = process_coins(MENU[choice]["cost"])
         return test
     else:
-        return 0
+        return -1
 
 #   TODO insert a call to remove required resources from resources dict
 
 
 machine_on = True
-
+transaction_profit = 0
 while machine_on:
 
     selection = input("What would you like? (espresso/latte/cappuccino): ").lower()
     if selection == "off":
         machine_on = False
     elif selection == "report":
-        report()
+        report(resources, profit)
     elif selection == "espresso" or selection == "latte" or selection == "cappuccino":
-        if process_request(selection) > 0:
+        transaction_profit = process_request(selection)
+        if transaction_profit != -1:
             print(f"Here is your {selection}")
-            profit += process_request(selection)
+            profit += transaction_profit
+
