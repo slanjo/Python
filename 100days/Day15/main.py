@@ -27,16 +27,10 @@ MENU = {
 
 resources = {
     "water": 300,
-#    "water": 40,
     "milk": 200,
     "coffee": 100,
-#    "milk": 0,
 }
 profit = 0
-
-
-def drink():
-    report()
 
 
 def report_not_enough_resource(ingredient):
@@ -56,7 +50,7 @@ def check_resources(choice):
             return -1
         else:
             resources[resource] -= MENU[choice]["ingredients"][resource]
-            return resources[resource]
+    return resources[resource]
 
 
 def process_coins(cost):
