@@ -56,7 +56,7 @@ def check_resources(choice):
             return -1
         else:
             resources[resource] -= MENU[choice]["ingredients"][resource]
-            return resources[resource]
+    return resources[resource]
 
 
 def process_coins(cost):
