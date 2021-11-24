@@ -28,10 +28,11 @@ MENU = {
 resources = {
     "water": 300,
 #    "water": 40,
-#    "milk": 200,
+    "milk": 200,
     "coffee": 100,
-    "milk": 0,
+#    "milk": 0,
 }
+profit = 0
 
 
 def drink():
@@ -49,29 +50,55 @@ def report():
 def check_resources(choice):
     for resource in MENU[choice]["ingredients"]:
         if MENU[choice]["ingredients"][resource] > resources[resource]:
-            print(f'{report_not_enough_resource(MENU[choice]["ingredients"][resource])}')
             print(f'{report_not_enough_resource(resource)}')
+            return -1
+        else:
+            resources[resource] -= MENU[choice]["ingredients"][resource]
+            return resources[resource]
+
+
+def process_coins(cost):
+    print("Please insert coins.")
+    quarters = 0.25 * int(input("How many quarters?: "))
+    dimes = 0.10 * int(input("How many dimes?: "))
+    nickels = 0.05 * int(input("How many nickles?: "))
+    pennies = 0.01 * int(input("How many pennies?: "))
+    total = quarters + dimes + nickels + pennies
+    if total >= cost:
+        print(f"Here is ${total - cost} in change.")
+        return total - cost
+    else:
+        print("Sorry that's not enough money. Money refunded.")
+        return 0
+
 
 def process_request(choice):
+
     if choice == "latte":
-        price = 2.5
-        check_resources("latte")
+        resource_check = check_resources("latte")
     elif choice == "cappuccino":
-        price = 3.0
-        print("cappuccino")
+        resource_check = check_resources("cappuccino")
     elif choice == "espresso":
-        price = 2.0
-        print("espresso")
+        resource_check = check_resources("espresso")
+    if resource_check != -1:
+        test = process_coins(MENU[choice]["cost"])
+        return test
+    else:
+        return 0
+
+#   TODO insert a call to remove required resources from resources dict
 
 
 machine_on = True
 
-
 while machine_on:
+
     selection = input("What would you like? (espresso/latte/cappuccino): ").lower()
     if selection == "off":
         machine_on = False
     elif selection == "report":
         report()
     elif selection == "espresso" or selection == "latte" or selection == "cappuccino":
-        process_request(selection)
+        if process_request(selection) > 0:
+            print(f"Here is your {selection}")
+            profit += process_request(selection)
