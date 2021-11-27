@@ -1,0 +1,29 @@
+#import turtle
+import prettytable
+#instatntiate  a class Turtle from module turtle (class names in python are starting CAPS) 
+#timmy = turtle.Turtle() 
+#if wan also do from turtle import Turtle and then:
+#timmy = Turtle()
+#print(timmy)
+#timmy.shape("turtle")
+#timmy.color("DeepPink2")
+#timmy.speed(1)
+#my_screen = turtle.Screen()
+#timmy.position()
+#timmy.setpos(100, 0)
+#print(my_screen.canvheight)
+#timmy.forward(100)
+#timmy.back(100)
+#print(timmy.position())
+#my_screen.exitonclick()
+
+table = prettytable.PrettyTable()
+#or if we imported as "from prettytable import PrettyTable"
+#we could do table = PrettyTable()
+table.add_column("Pokemon Name", ["Pikachu", "Squirtle", "Charmander"])
+table.add_column( "Type", ["Electric", "Water", "Fire"])
+print(table.align)
+table.align="l"
+print(table.align)
+print(table)
+
