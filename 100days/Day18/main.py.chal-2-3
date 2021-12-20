@@ -1,0 +1,46 @@
+# This is a sample Python script.
+
+# Press ⌃R to execute it or replace it with your code.
+# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+import random
+import turtle as t
+import random as r
+
+
+def print_hi(name):
+    # Use a breakpoint in the code line below to debug your script.
+    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+
+
+# Press the green button in the gutter to run the script.
+if __name__ == '__main__':
+    my_turtle = t.Turtle()
+#    my_turtle.shape("arrow")
+    my_screen = t.Screen()
+    my_screen.colormode(255)
+    #    for _ in range(4):
+#        my_turtle.forward(200)
+#        my_turtle.rt(90)
+#    my_turtle.sety(10)
+#    my_turtle.setx(-50)
+#    i = 0
+#    while i < 25:
+#        my_turtle.forward(5)
+#        my_turtle.penup()
+#        my_turtle.forward(5)
+#        my_turtle.pendown()
+#        i += 1
+    i = 3
+    angls = 0
+
+# My Solution
+    while i <= 10:
+        angls = 360 / i
+        my_turtle.pencolor(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+        for _ in range(i):
+            my_turtle.forward(100)
+            my_turtle.rt(angls)
+        i += 1
+
+if name == __main    while not my_screen.exitonclick():
+        my_screen()
