@@ -9,8 +9,12 @@ def mv_clck():
 def mv_cnt_clck():
     korni.setheading(korni.heading() - 10) 
 def clr_scrn():
-    my_screen.clearscreen()
-
+#    my_screen.clearscreen()
+    korni.clear()
+    korni.penup()
+    korni.home()
+    kornin.pendown()
+    
 if __name__ == '__main__':
     korni = Turtle()
     my_screen = Screen()
