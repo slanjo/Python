@@ -1,0 +1,38 @@
+from turtle import Turtle, Vec2D 
+import random
+
+class Ball(Turtle):
+ 
+    def __init__(self):
+        super().__init__()
+        self.color("white")
+        self.penup()
+        self.shape("circle")
+        self.goto((0,0))
+    
+    def move(self, direction):
+        if direction == 1:
+            #up_right(self)
+            new_y = self.ycor() + 10
+            new_x = self.xcor() + 10
+            self.goto(new_x, new_y) 
+
+        elif direction == 2:
+            #down_right(self)
+            new_y = self.ycor() - 10
+            new_x = self.xcor() + 10
+            self.goto(new_x, new_y) 
+
+        elif direction == 3:
+            #up_left(self):
+            new_y = self.ycor() + 10
+            new_x = self.xcor() - 10
+            self.goto(new_x, new_y) 
+
+        elif direction == 4:
+            #down_left(self)
+            new_y = self.ycor() - 10
+            new_x = self.xcor() - 10
+            self.goto(new_x, new_y) 
+    
+
