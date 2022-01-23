@@ -1,0 +1,42 @@
+from ball import Ball
+from turtle import Screen
+from paddle import Paddle
+import time
+
+if __name__ == '__main__':
+    screen = Screen()
+    screen.setup(800, 600)
+    screen.title("Ping-Pong Game")
+    screen.bgcolor("black")
+    screen.tracer(0)
+
+    l_paddle = Paddle((-350, 0))
+    r_paddle = Paddle((350, 0)) 
+    ball = Ball()    
+    screen.listen()
+    screen.onkey(r_paddle.go_up, "Up")
+    screen.onkey(r_paddle.go_down, "Down")
+    screen.onkey(l_paddle.go_up, "w")
+    screen.onkey(l_paddle.go_down, "s")
+
+    game_on = True
+    direction = 4 
+    while game_on:
+        screen.update()
+        time.sleep(0.1)
+        ball.move(direction) 
+        print(f"direction :: {direction}")
+        if ball.ycor() > 290 and direction == 1: #up_right
+            direction = 2 # down_right
+
+        elif ball.ycor() > 290 and direction == 3: #up_left
+            direction = 4 # down_left 
+
+        elif ball.ycor() < -290 and direction == 4: #down_left 
+            direction = 3 # up_left
+
+        elif ball.ycor() < -290 and direction == 2: #down_right
+            direction = 1 # up_right
+
+
+    screen.exitonclick()

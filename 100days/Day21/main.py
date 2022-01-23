@@ -45,7 +45,7 @@ if __name__ == '__main__':
 #            if segment == snake.segments[0]:
 #                pass
 #            if  snake.segments[0].position() == segment.position():
-            if snake.head.position() == segment.position(): # COULD BE DONE AS >>> if snake.head.(segment) < 10: 
+            if snake.head.position() == segment.position(): # COULD BE DONE AS >>> if snake.head.distance(segment) < 10: 
                 game_is_on = False
                 score.game_over()
 
