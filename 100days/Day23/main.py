@@ -1,17 +1,46 @@
+# A simple "Frogger" rendition - Jan 2022. 
 import time
 from turtle import Screen
 from player import Player
 from car_manager import CarManager
 from scoreboard import Scoreboard
+SLEEP = 0.1
 
-screen = Screen()
-screen.setup(width=600, height=600)
-screen.tracer(0)
+if __name__ == '__main__':
+    cars = []
+    screen = Screen()
+    screen.setup(width=600, height=600)
+    screen.tracer(0)
+    frogger = Player()
+    score = Scoreboard() 
+    screen.listen()
+    screen.onkey(frogger.move_up, "Up")
+    count_frames = 0
+#    car = CarManager()
+        
+    game_is_on = True
 
-game_is_on = True
-while game_is_on:
-    time.sleep(0.1)
-    screen.update()
+    while game_is_on:
+        time.sleep(0.1)
+        screen.update()
+        if frogger.finish_line():
+            score.update_score()
+            for car in cars:
+                car.speed_inc()
+
+        if count_frames == 5: 
+            cars.append(CarManager())
+            count_frames = 0
+        else:
+            count_frames += 1
+
+        for car in cars:
+            car.move_car()
+            if car.distance(frogger) < 20:
+                score.game_over()
+                game_is_on = False
+
+    screen.exitonclick()
 
 """
 Create a turtle player that starts at the bottom of the screen and listen for the "Up" keypress to move the turtle north. If you get stuck, check the video walkthrough in Step 3.
