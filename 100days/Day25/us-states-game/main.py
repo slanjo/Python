@@ -55,4 +55,6 @@ if __name__ == '__main__':
         #turtle.mainloop()
         #screen.exitonclick()
     print(states) 
+    states_list = pandas.DataFrame(states)
+    states_list.to_csv("what-you-missed.csv")
     #
