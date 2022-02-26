@@ -33,7 +33,7 @@ if __name__ == '__main__':
     except KeyError as greska:
         print(f"Key {greska} does not exist!")
     else:
-        #execute code if there were not exceptions
+        #execute code if there were no exceptions
         pass
 
     finally:
