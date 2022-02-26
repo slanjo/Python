@@ -7,10 +7,23 @@ df = pd.read_csv("data/french_words.csv")
 lista = df.to_dict(orient="records")
 
 def show_word():
+    canvas.itemconfigure(canvas_image, image=front_img)
+    title.set("French")
     french_word = random.choice(lista) 
-    word = word_label
-    print(french_word["French"])
-    canvas.config(word) 
+    fr_word.set(f"{french_word['French']}")
+    print(f'French: {french_word["French"]} ----> English: {french_word["English"]}') 
+    window.after(3000, flip)
+
+def flip():
+    canvas.itemconfigure(canvas_image, image=back_img)
+    frankish = fr_word.get()
+    title.set("English")
+    print(fr_word.get())
+    for french in lista: 
+        if french['French'] ==  frankish:
+            fr_word.set(french['English'])
+    print(fr_word.get())
+    
 
 if __name__ == '__main__':
 
@@ -21,19 +34,23 @@ if __name__ == '__main__':
     
     canvas = Canvas(height=526, width=800) 
     front_img = PhotoImage(file="images/card_front.png")
-    canvas.create_image(400, 263, image=front_img)
+    back_img = PhotoImage(file="images/card_back.png")
+    canvas_image = canvas.create_image(400, 263, image=front_img)
+    canvas.itemconfig(canvas_image, image=front_img)
     canvas.create_text(400, 150, text="Title", font=("Ariel", 40, "italic"))
     canvas.create_text(400, 263, text="Word", font=("Ariel", 60, "bold"))
     canvas.config(bg=BACKGROUND_COLOR, highlightthickness=0) 
     canvas.grid(row=0, column=0, columnspan=2)
- 
+
     #Labels
-    title_label = Label(text="French", fg="black", bg='white', font=("Arial", 40, "italic"))
-    v = StringVar()
+    fr_word = StringVar()
+    title = StringVar()
+    title.set("French")
+    title_label = Label(textvariable=title, fg="black", bg='white', font=("Arial", 40, "italic"))
     title_label.grid(row=0, column=0, sticky=N, pady=150, columnspan=2)
     title_label.update()
 
-    word_label = Label(text="trouve", fg="black", bg='white', font=("Arial", 60, "bold"))
+    word_label = Label(text="trouve", textvariable=fr_word, fg="black", bg='white', font=("Arial", 60, "bold"))
     word_label.grid(row=0, column=0, sticky=N, pady=263, columnspan=2)
     word_label.update()
     
@@ -47,5 +64,6 @@ if __name__ == '__main__':
     right_button = Button(image=right_img, highlightthickness=0, command=show_word)
     right_button.grid(row=1, column=1) 
     
+#    window.after(3000, flip)
     
     window.mainloop()
